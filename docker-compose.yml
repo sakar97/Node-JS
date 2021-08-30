@@ -2,6 +2,7 @@ version: "3.2"
 services:
   db:
     image: postgres
+    restart: always
     container_name: database
     hostname: db
     environment:
@@ -16,6 +17,7 @@ services:
       context: ./web/
       dockerfile: Dockerfile
     command: npm start app.js
+    restart: always
     container_name: frontend
     depends_on:
       - db
@@ -29,6 +31,7 @@ services:
       context: ./api/
       dockerfile: Dockerfile
     command: npm start app.js
+    restart: always
     container_name: backend
     depends_on:
       - db
